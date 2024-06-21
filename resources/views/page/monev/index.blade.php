@@ -6,6 +6,11 @@
 
 @section('title', 'Monev')
 
+@section('css')
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.css">
+@endsection
+
 @section('content')
     <main id="main" class="main">
         <div class="pagetitle">
@@ -129,7 +134,8 @@
                                     id="home" role="tabpanel" aria-labelledby="ganjil-tab">
                                     <div class="card-body mt-4">
                                         <!-- Table with stripped rows -->
-                                        <table class="table datatable">
+                                        {{-- <a href="" class="btn btn-sm btn-primary">Laporan PDF</a> --}}
+                                        <table id="datatable-file-export-ganjil" class="table">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Kode Inventaris</th>
@@ -216,19 +222,18 @@
                                     id="profile" role="tabpanel" aria-labelledby="genap-tab">
                                     <div class="card-body mt-4">
                                         <!-- Table with stripped rows -->
-                                        <table class="table datatable">
+
+                                        <table id="datatable-file-export-genap" class="table">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Kode Inventaris</th>
                                                     <th scope="col">Nama</th>
                                                     <th scope="col">Sarpras</th>
-                                                    {{-- <th scope="col">Kategori</th> --}}
                                                     <th scope="col">Kondisi</th>
                                                     <th scope="col">Keterangan</th>
                                                     <th scope="col">Akar Masalah</th>
                                                     <th scope="col">Tindak Lanjut</th>
-                                                    {{-- <th scope="col">Lokasi Prasarana</th> --}}
-                                                    {{-- <th scope="col">Aksi</th> --}}
+
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -236,7 +241,6 @@
                                                     @php
                                                         $sarpras = 'Prasarana';
                                                     @endphp
-                                                    {{-- @include('page.pemeliharaanSarpras.popup.form-input-pemeliharaan-sarpras-Genap') --}}
                                                     <tr>
                                                         <th scope="row">{{ $item->kode_inventaris }}</th>
                                                         <td>{{ $item->nama_prasarana }}
@@ -245,7 +249,6 @@
                                                             @endif
                                                         </td>
                                                         <td>{{ $sarpras }}</td>
-                                                        {{-- <td>{{ $item->kategori->kategori }}</td> --}}
                                                         <td>{{ $item->logPemeliharaanSarpras($item->id, $thn, $semester)->kondisi ?? 'N/A' }}
                                                         </td>
                                                         <td>{{ $item->logPemeliharaanSarpras($item->id, $thn, $semester)->desc ?? 'N/A' }}
@@ -254,19 +257,13 @@
                                                         </td>
                                                         <td>{{ $item->logPemeliharaanSarpras($item->id, $thn, $semester)->tindak_lanjut ?? 'N/A' }}
                                                         </td>
-                                                        {{-- <td>
-                                                            <a href="#" class="btn btn-warning" title="Edit"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#pemeliharaan-sarpras{{ $item->id }}{{ $semester }}">
-                                                                <i class="bi bi-pencil"></i></a>
-                                                        </td> --}}
+
                                                     </tr>
                                                 @endforeach
                                                 @foreach ($saranas as $item)
                                                     @php
                                                         $sarpras = 'Sarana';
                                                     @endphp
-                                                    {{-- @include('page.pemeliharaanSarpras.popup.form-input-pemeliharaan-sarpras-Genap') --}}
                                                     <tr>
                                                         <th scope="row">{{ $item->kode_inventaris }}</th>
                                                         <td>{{ $item->nama_sarana }}
@@ -275,7 +272,6 @@
                                                             @endif
                                                         </td>
                                                         <td>{{ $sarpras }}</td>
-                                                        {{-- <td>{{ $item->kategori->kategori }}</td> --}}
                                                         <td>{{ $item->logPemeliharaanSarpras($item->id, $thn, $semester)->kondisi ?? 'N/A' }}
                                                         </td>
                                                         <td>{{ $item->logPemeliharaanSarpras($item->id, $thn, $semester)->desc ?? 'N/A' }}
@@ -284,12 +280,6 @@
                                                         </td>
                                                         <td>{{ $item->logPemeliharaanSarpras($item->id, $thn, $semester)->tindak_lanjut ?? 'N/A' }}
                                                         </td>
-                                                        {{-- <td>
-                                                            <a href="#" class="btn btn-warning" title="Edit"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#pemeliharaan-sarpras{{ $item->id }}{{ $semester }}">
-                                                                <i class="bi bi-pencil"></i></a>
-                                                        </td> --}}
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -312,7 +302,32 @@
 @endsection
 
 @section('script')
+
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
     <script>
+        new DataTable('#datatable-file-export-ganjil', {
+            layout: {
+                topStart: {
+                    buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                }
+            }
+        });
+
+        new DataTable('#datatable-file-export-genap', {
+            layout: {
+                topStart: {
+                    buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                }
+            }
+        });
+
         document.getElementById('showPopup').addEventListener('click', function() {
             document.getElementById('popup').classList.remove('hidden');
         });
