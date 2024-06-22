@@ -135,7 +135,7 @@
                                     <div class="card-body mt-4">
                                         <!-- Table with stripped rows -->
                                         {{-- <a href="" class="btn btn-sm btn-primary">Laporan PDF</a> --}}
-                                        <table id="datatable-file-export-ganjil" class="table">
+                                        <table id="datatable-file-export-ganjil" class="display wrap">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Kode Inventaris</th>
@@ -212,6 +212,17 @@
                                                     </tr>
                                                 @endforeach
                                             </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th scope="col">Kode Inventaris</th>
+                                                    <th scope="col">Nama</th>
+                                                    <th scope="col">Sarpras</th>
+                                                    <th scope="col">Kondisi</th>
+                                                    <th scope="col">Keterangan</th>
+                                                    <th scope="col">Akar Masalah</th>
+                                                    <th scope="col">Tindak Lanjut</th>
+                                                </tr>
+                                            </tfoot>
                                         </table>
 
                                         <!-- End Table with stripped rows -->
@@ -223,7 +234,7 @@
                                     <div class="card-body mt-4">
                                         <!-- Table with stripped rows -->
 
-                                        <table id="datatable-file-export-genap" class="table">
+                                        <table id="datatable-file-export-genap" class="display wrap">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Kode Inventaris</th>
@@ -283,6 +294,17 @@
                                                     </tr>
                                                 @endforeach
                                             </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th scope="col">Kode Inventaris</th>
+                                                    <th scope="col">Nama</th>
+                                                    <th scope="col">Sarpras</th>
+                                                    <th scope="col">Kondisi</th>
+                                                    <th scope="col">Keterangan</th>
+                                                    <th scope="col">Akar Masalah</th>
+                                                    <th scope="col">Tindak Lanjut</th>
+                                                </tr>
+                                            </tfoot>
                                         </table>
 
                                         <!-- End Table with stripped rows -->
