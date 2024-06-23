@@ -19,11 +19,40 @@
                       <div class="row g-2">
                           <div class="col-md mr-2">
 
-                              <div class="form-floating">
-                                  <input type="text" class="form-control" name="kode_inventaris"
-                                      id="floatingInputGrid" placeholder="xxxxxxxxx"
-                                      value="{{ $item->kode_inventaris }}" required>
-                                  <label for="floatingInputGrid">Kode Inventaris</label>
+                              <div class="row g-3 mb-2">
+                                  <div class="col-md-2">
+                                      <label for="inputGol" class="form-label">Gol</label>
+                                      <input type="number" class="form-control" name="gol"
+                                          value="{{ $item->kodeInventaris->gol }}" id="inputGol" required>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <label for="inputBid" class="form-label">Bid</label>
+                                      <input type="number" class="form-control" name="bid"
+                                          value="{{ $item->kodeInventaris->bid }}" id="inputBid" required>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <label for="inputKel" class="form-label">Kel</label>
+                                      <input type="number" class="form-control" name="kel"
+                                          value="{{ $item->kodeInventaris->kel }}" id="inputKel" required>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <label for="inputSubKel" class="form-label">Sub
+                                          Kel</label>
+                                      <input type="number" class="form-control" name="sub_kel"
+                                          value="{{ $item->kodeInventaris->sub_kel }}" id="inputSubKel" required>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <label for="inputSubSub" class="form-label">Sub
+                                          Sub</label>
+                                      <input type="number" class="form-control" name="sub_sub"
+                                          value="{{ $item->kodeInventaris->sub_sub }}" id="inputSubSub" required>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <label for="inputNoUrut" class="form-label">No.
+                                          Urut</label>
+                                      <input type="number" class="form-control" name="no_urut"
+                                          value="{{ $item->kodeInventaris->no_urut }}" id="inputNoUrut" required>
+                                  </div>
                               </div>
 
                               <div class="form-floating mt-2">
@@ -50,7 +79,8 @@
                               <div class="form-floating mt-2">
                                   <select class="form-select" id="floatingSelect" name="kategori_id" required
                                       aria-label="Floating label select example">
-                                      <option value="{{ $item->kategori_id }}">{{ $item->kategori->kategori }}</option>
+                                      <option value="{{ $item->kategori_id }}">{{ $item->kategori->kategori }}
+                                      </option>
                                       @foreach ($kategoris as $kategori)
                                           <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
                                       @endforeach
@@ -74,11 +104,17 @@
                                   <label for="floatingInputGrid">Jumlah</label>
                               </div>
 
-                              {{-- <div class="form-floating mt-2">
-                              <input type="text" class="form-control" name="lokasi_prasarana" id="floatingInputGrid"
-                                  placeholder="xxxxxxxxx" value="" required>
-                              <label for="floatingInputGrid">Lokasi</label>
-                                </div> --}}
+                              <div class="form-floating mt-2">
+                                  <input type="string" class="form-control" name="harga" id="floatingInputGrid"
+                                      placeholder="xxxxxxxxx" value="{{ $item->harga }}">
+                                  <label for="floatingInputGrid">Harga</label>
+                              </div>
+
+                              <div class="form-floating mt-2">
+                                  <input type="text" class="form-control" name="lokasi_sarana"
+                                      id="floatingInputGrid" placeholder="xxxxxxxxx" value="{{ $item->lokasi_sarana }}" required>
+                                  <label for="floatingInputGrid">Lokasi</label>
+                              </div>
 
                               {{-- <div class="form-floating mt-2">
                                   <textarea class="form-control" name="lokasi_prasarana" placeholder="" id="floatingTextarea"></textarea>

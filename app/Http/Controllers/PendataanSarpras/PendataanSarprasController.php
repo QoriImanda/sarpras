@@ -7,6 +7,7 @@ use App\Models\Prasarana;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\KodeInventaris;
 use App\Models\PenanggungJawabSarpras;
 
 class PendataanSarprasController extends Controller
@@ -132,23 +133,36 @@ class PendataanSarprasController extends Controller
                 }
             } else {
                 $this->validate($request, [
-                    'kode_inventaris' => 'required|unique:saranas',
+                    // 'kode_inventaris' => 'required|unique:saranas',
                     'nama_sarana' => 'required',
                     // 'desc' => 'required',
                     'jenis_sarana' => 'required',
                     'kategori_id' => 'required',
                     'tahun_pengadaan' => 'required',
                     'jumlah' => 'required',
+                    'harga' => 'required',
+                    'lokasi_sarana' => 'required',
+                ]);
+
+                $kodeIventaris = KodeInventaris::create([
+                    'gol' => $request->gol,
+                    'bid' => $request->bid,
+                    'kel' => $request->kel,
+                    'sub_kel' => $request->sub_kel,
+                    'sub_sub' => $request->sub_sub,
+                    'no_urut' => $request->no_urut,
                 ]);
 
                 $createdsarana = new Sarana;
-                $createdsarana->kode_inventaris = $request->kode_inventaris;
+                $createdsarana->kode_inventaris_id = $kodeIventaris->id;
                 $createdsarana->nama_sarana = $request->nama_sarana;
                 $createdsarana->desc = $request->desc;
                 $createdsarana->jenis_sarana = $request->jenis_sarana;
                 $createdsarana->kategori_id = $request->kategori_id;
                 $createdsarana->tahun_pengadaan = $request->tahun_pengadaan;
                 $createdsarana->jumlah = $request->jumlah;
+                $createdsarana->harga = $request->harga;
+                $createdsarana->lokasi_sarana = $request->lokasi_sarana;
                 $createdsarana->save();
             }
         }

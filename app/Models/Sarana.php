@@ -68,4 +68,9 @@ class Sarana extends Model
         // dd($pjSarpras);
         return $pjSarpras;
     }
+
+    public function kodeInventaris()
+    {
+        return $this->belongsTo(KodeInventaris::class);
+    }
 }

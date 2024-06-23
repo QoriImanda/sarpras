@@ -117,7 +117,7 @@
 
                             <!-- Table with stripped rows -->
                             @if ($menu == 'sarana')
-                                <table class="table datatable">
+                                <table id="table-responsive-mobile" class="display" style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th scope="col">Kode Inventaris</th>
@@ -127,7 +127,8 @@
                                             <th scope="col">Kategori</th>
                                             <th scope="col">Tahun Pengadaan</th>
                                             <th scope="col">Jumlah</th>
-                                            {{-- <th scope="col">Lokasi Sarana</th> --}}
+                                            <th scope="col">Harga</th>
+                                            <th scope="col">Lokasi Sarana</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
@@ -135,41 +136,50 @@
                                         @foreach ($sarpras as $item)
                                             @include('page.pendataan-sarpras.popup.edit-' . $menu)
                                             <tr>
-                                                <th scope="row">{{ $item->kode_inventaris }}</th>
+                                                <th scope="row">
+                                                    <div class="text-nowrap">
+                                                        {{ $item->kodeInventaris->gol }}.{{ $item->kodeInventaris->bid }}.{{ $item->kodeInventaris->kel }}.{{ $item->kodeInventaris->sub_kel }}.{{ $item->kodeInventaris->sub_sub }}.{{ $item->kodeInventaris->no_urut }}
+                                                    </div>
+                                                </th>
                                                 <td>{{ $item->nama_sarana }}</td>
                                                 <td>{{ $item->desc }}</td>
                                                 <td>{{ $item->jenis_sarana }}</td>
                                                 <td>{{ $item->kategori->kategori }}</td>
                                                 <td>{{ $item->tahun_pengadaan }}</td>
-                                                {{-- <td>{{ $item->lokasi_sarana }}</td> --}}
                                                 <td>{{ $item->jumlah }}</td>
+                                                <td>{{ $item->harga }}</td>
+                                                <td>{{ $item->lokasi_sarana }}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-warning" title="Edit"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#edit-sarana{{ $item->id }}">
-                                                        <i class="bi bi-pencil"></i></a>
-                                                    @if (in_array('PJS', $roleUser))
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <a href="#" class="btn btn-warning" title="Edit"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#edit-sarana{{ $item->id }}">
+                                                                <i class="bi bi-pencil"></i></a>
+                                                        </div>
+                                                        @if (in_array('PJS', $roleUser))
+                                                            <form
+                                                                action="{{ route('pendataanSarpras.destroy', [$menu, $item->id]) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <input type="hidden" name="kondisi" value="move out">
+                                                                <button class="btn btn-secondary mt-2" title="Delete"
+                                                                    onclick="return confirm('Anda ingin mengeluarkan data ini?')"><i
+                                                                        class="bi bi-box-arrow-up"></i></button>
+                                                            </form>
+                                                        @endif
                                                         <form
                                                             action="{{ route('pendataanSarpras.destroy', [$menu, $item->id]) }}"
                                                             method="post">
                                                             @csrf
                                                             @method('delete')
-                                                            <input type="hidden" name="kondisi" value="move out">
-                                                            <button class="btn btn-secondary mt-2" title="Delete"
-                                                                onclick="return confirm('Anda ingin mengeluarkan data ini?')"><i
-                                                                    class="bi bi-box-arrow-up"></i></button>
-                                                        </form>
-                                                    @endif
-                                                    <form
-                                                        action="{{ route('pendataanSarpras.destroy', [$menu, $item->id]) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        @method('delete')
 
-                                                        <button class="btn btn-danger mt-2" title="Trash"
-                                                            onclick="return confirm('Anda ingin menghapus data ini?')"><i
-                                                                class="bi bi-trash"></i></button>
-                                                    </form>
+                                                            <button class="btn btn-danger mt-2" title="Trash"
+                                                                onclick="return confirm('Anda ingin menghapus data ini?')"><i
+                                                                    class="bi bi-trash"></i></button>
+                                                        </form>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -251,4 +261,19 @@
     </main>
 
 
+@endsection
+
+@section('script')
+    <script>
+        new DataTable('#table-responsive-mobile', {
+            responsive: true,
+            lengthChange: false,
+            searching: false,
+            paging: false,
+            info: false,
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            }
+        });
+    </script>
 @endsection

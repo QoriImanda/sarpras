@@ -9,8 +9,8 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    {{-- @vite(['resources/css/app/css', 'resources/js/app.js']) --}}
-    
+    @vite(['resources/css/app/css', 'resources/js/app.js'])
+
     <!-- ======= Link css ======= -->
     @include('layouts.link-css')
     <!--End link css -->

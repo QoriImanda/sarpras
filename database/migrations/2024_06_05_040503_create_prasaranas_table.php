@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('prasaranas', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('kode_inventaris')->unique();
+            $table->foreignUuid('kode_inventaris_id')->constrained('kode_inventaris')->restrictOnUpdate()->restrictOnDelete();
             $table->string('nama_prasarana');
             $table->longText('ruang_prasarana')->nullable();
             $table->longText('desc')->nullable();
             $table->foreignUuid('kategori_id')->constrained('kategoris')->restrictOnUpdate()->restrictOnDelete();
             $table->year('tahun_pengadaan')->nullable();
+            $table->string('harga')->nullable();
             $table->longText('lokasi_prasarana')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
