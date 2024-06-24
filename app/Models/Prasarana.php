@@ -61,4 +61,9 @@ class Prasarana extends Model
         ->where('tahun_periode', $thnPeriode)->where('semester', $smtr)->first();
     }
 
+    public function kodeInventaris()
+    {
+        return $this->belongsTo(KodeInventaris::class);
+    }
+
 }

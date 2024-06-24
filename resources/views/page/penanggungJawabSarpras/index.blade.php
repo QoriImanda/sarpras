@@ -114,7 +114,7 @@
                                         @endphp
                                         @include('page.penanggungJawabSarpras.popup.pj-sarpras')
                                         <tr>
-                                            <th scope="row">{{ $item->kode_inventaris }}</th>
+                                            <th scope="row">{{ $item->kodeInventaris->gol }}.{{ $item->kodeInventaris->bid }}.{{ $item->kodeInventaris->kel }}.{{ $item->kodeInventaris->sub_kel }}.{{ $item->kodeInventaris->sub_sub }}.{{ $item->kodeInventaris->no_urut }}</th>
                                             <td>{{ $item->nama_prasarana }}</td>
                                             <td>Prasarana</td>
                                             <td>{{ $item->kategori->kategori }}</td>
@@ -122,7 +122,7 @@
                                             {{-- <td>{{ $item->lokasi_prasarana }}</td> --}}
                                             <td>
                                                 <a href="#" class="btn btn-warning" title="Edit"
-                                                    data-bs-toggle="modal" data-bs-target="#pj-sarpras{{ $item->id }}" 
+                                                    data-bs-toggle="modal" data-bs-target="#pj-sarpras{{ $item->id }}"
                                                     onclick="pjsarpras('{{ $item->id }}')">
                                                     <i class="bi bi-pencil"></i></a>
                                             </td>
@@ -134,7 +134,7 @@
                                         @endphp
                                         @include('page.penanggungJawabSarpras.popup.pj-sarpras')
                                         <tr>
-                                            <th scope="row">{{ $item->kode_inventaris }}</th>
+                                            <th scope="row">{{ $item->kodeInventaris->gol }}.{{ $item->kodeInventaris->bid }}.{{ $item->kodeInventaris->kel }}.{{ $item->kodeInventaris->sub_kel }}.{{ $item->kodeInventaris->sub_sub }}.{{ $item->kodeInventaris->no_urut }}</th>
                                             <td>{{ $item->nama_sarana }}</td>
                                             <td>Sarana</td>
                                             <td>{{ $item->kategori->kategori }}</td>

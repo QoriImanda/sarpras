@@ -28,7 +28,7 @@ class PendataanSarprasController extends Controller
                 $sarana = Sarana::join('prasarana_sarana', 'saranas.id', '=', 'prasarana_sarana.sarana_id')
                     ->where('prasarana_id', $prasaranaID)->select(
                         'saranas.id',
-                        'saranas.kode_inventaris',
+                        'saranas.kode_inventaris_id',
                         'saranas.nama_sarana',
                         'saranas.desc',
                         'saranas.jenis_sarana',
@@ -37,8 +37,8 @@ class PendataanSarprasController extends Controller
                         'saranas.jumlah',
                         'saranas.lokasi_sarana',
                         'saranas.status',
-                        )->get();
-                    // dd($sarana);
+                    )->get();
+                // dd($sarana);
                 return  view('page.pendataan-sarpras.pendataan', [
                     'sarpras' => $sarana,
                     'menu' => $menu,
@@ -54,7 +54,7 @@ class PendataanSarprasController extends Controller
                     'kondisiPJL' => false
                 ]);
             }
-        } elseif (in_array('ADM', $userRole)||in_array('IVN', $userRole)) {
+        } elseif (in_array('ADM', $userRole) || in_array('IVN', $userRole)) {
             if ($menu == 'sarana') {
                 $sarana = Sarana::orderBy('created_at', 'asc')->get();
                 return  view('page.pendataan-sarpras.pendataan', [
@@ -89,17 +89,35 @@ class PendataanSarprasController extends Controller
 
         if ($menu == 'prasarana') {
             $this->validate($request, [
-                'kode_inventaris' => 'required|unique:prasaranas',
+                // 'kode_inventaris' => 'required|unique:prasaranas',
                 'nama_prasarana' => 'required',
                 // 'desc' => 'required',
                 'kategori_id' => 'required',
             ]);
-            Prasarana::create($request->all());
+
+            $kodeIventaris = KodeInventaris::create([
+                'gol' => $request->gol,
+                'bid' => $request->bid,
+                'kel' => $request->kel,
+                'sub_kel' => $request->sub_kel,
+                'sub_sub' => $request->sub_sub,
+                'no_urut' => $request->no_urut,
+            ]);
+
+            $createdPrasarana = new Prasarana();
+            $createdPrasarana->kode_inventaris_id = $kodeIventaris->id;
+            $createdPrasarana->nama_prasarana = $request->nama_prasarana;
+            $createdPrasarana->desc = $request->desc;
+            $createdPrasarana->kategori_id = $request->kategori_id;
+            $createdPrasarana->tahun_pengadaan = $request->tahun_pengadaan;
+            $createdPrasarana->harga = $request->harga;
+            $createdPrasarana->lokasi_prasarana = $request->lokasi_prasarana;
+            $createdPrasarana->save();
         } elseif ($menu == 'sarana') {
 
             if (in_array('PJS', $userRole)) {
 
-                $sarana = Sarana::where('kode_inventaris', $request->kode_inventaris)->first();
+                $sarana = Sarana::where('kode_inventaris_id', $request->kode_inventaris_id)->first();
 
                 if ($sarana) {
                     $prasarana_sarana = DB::table('prasarana_sarana')->where('sarana_id', $sarana->id)
@@ -125,9 +143,34 @@ class PendataanSarprasController extends Controller
                         'kategori_id' => 'required',
                         'tahun_pengadaan' => 'required',
                         'jumlah' => 'required',
+                        'gol' => 'required',
+                        'bid' => 'required',
+                        'kel' => 'required',
+                        'sub_kel' => 'required',
+                        'sub_sub' => 'required',
+                        'no_urut' => 'required',
                     ]);
 
-                    $createdsarana = Sarana::create($request->all());
+                    $kodeIventaris = KodeInventaris::create([
+                        'gol' => $request->gol,
+                        'bid' => $request->bid,
+                        'kel' => $request->kel,
+                        'sub_kel' => $request->sub_kel,
+                        'sub_sub' => $request->sub_sub,
+                        'no_urut' => $request->no_urut,
+                    ]);
+
+                    $createdsarana = new Sarana;
+                    $createdsarana->kode_inventaris_id = $kodeIventaris->id;
+                    $createdsarana->nama_sarana = $request->nama_sarana;
+                    $createdsarana->desc = $request->desc;
+                    $createdsarana->jenis_sarana = $request->jenis_sarana;
+                    $createdsarana->kategori_id = $request->kategori_id;
+                    $createdsarana->tahun_pengadaan = $request->tahun_pengadaan;
+                    $createdsarana->jumlah = $request->jumlah;
+                    $createdsarana->harga = $request->harga;
+                    $createdsarana->lokasi_sarana = $request->lokasi_sarana;
+                    $createdsarana->save();
 
                     $createdsarana->prasaranas()->attach($request->prasarana_id);
                 }
@@ -173,6 +216,8 @@ class PendataanSarprasController extends Controller
     public function update(Request $request, $menu, $id)
     {
 
+        // dd($request->all());
+
         if ($menu == 'prasarana') {
 
             $this->validate($request, [
@@ -181,13 +226,26 @@ class PendataanSarprasController extends Controller
                 // 'desc' => 'required',
                 'kategori_id' => 'required',
             ]);
-            $prasarana = Prasarana::find($id);
-            if (!($request->kode_inventaris == $prasarana->kode_inventaris)) {
-                $this->validate($request, [
-                    'kode_inventaris' => 'required|unique:prasaranas',
-                ]);
-            }
-            $prasarana->update($request->all());
+
+            $Prasarana = Prasarana::find($id);
+            // $Prasarana->kode_inventaris_id = $kodeIventaris->id;
+            $Prasarana->nama_prasarana = $request->nama_prasarana;
+            $Prasarana->desc = $request->desc;
+            $Prasarana->kategori_id = $request->kategori_id;
+            $Prasarana->tahun_pengadaan = $request->tahun_pengadaan;
+            $Prasarana->harga = $request->harga;
+            $Prasarana->lokasi_prasarana = $request->lokasi_prasarana;
+            $Prasarana->save();
+
+            $kodeIventaris = KodeInventaris::find($Prasarana->kode_inventaris_id);
+            $kodeIventaris->update([
+                'gol' => $request->gol,
+                'bid' => $request->bid,
+                'kel' => $request->kel,
+                'sub_kel' => $request->sub_kel,
+                'sub_sub' => $request->sub_sub,
+                'no_urut' => $request->no_urut,
+            ]);
         } elseif ($menu == 'sarana') {
 
             $this->validate($request, [
@@ -198,12 +256,26 @@ class PendataanSarprasController extends Controller
             ]);
 
             $sarana = Sarana::find($id);
-            if (!($request->kode_inventaris == $sarana->kode_inventaris)) {
-                $this->validate($request, [
-                    'kode_inventaris' => 'required|unique:saranas',
-                ]);
-            }
-            $sarana->update($request->all());
+            // $sarana->kode_inventaris_id = $kodeIventaris->id;
+            $sarana->nama_sarana = $request->nama_sarana;
+            $sarana->desc = $request->desc;
+            $sarana->jenis_sarana = $request->Jenis_sarana;
+            $sarana->kategori_id = $request->kategori_id;
+            $sarana->tahun_pengadaan = $request->tahun_pengadaan;
+            $sarana->jumlah = $request->jumlah;
+            $sarana->harga = $request->harga;
+            $sarana->lokasi_sarana = $request->lokasi_sarana;
+            $sarana->save();
+
+            $kodeIventaris = KodeInventaris::find($sarana->kode_inventaris_id);
+            $kodeIventaris->update([
+                'gol' => $request->gol,
+                'bid' => $request->bid,
+                'kel' => $request->kel,
+                'sub_kel' => $request->sub_kel,
+                'sub_sub' => $request->sub_sub,
+                'no_urut' => $request->no_urut,
+            ]);
         }
 
         return redirect()->back();
@@ -217,9 +289,16 @@ class PendataanSarprasController extends Controller
             // dd($id);
         } else {
             if ($menu == 'prasarana') {
-                Prasarana::find($id)->delete();
+                $prasarana = Prasarana::find($id);
+                // $kodeIventaris = KodeInventaris::find($prasarana->kode_inventaris_id);
+                $prasarana->delete();
+                // $kodeIventaris->delete();
             } elseif ($menu == 'sarana') {
-                Sarana::find($id)->delete();
+                $sarana = Sarana::find($id);
+                $sarana->delete();
+
+                // $kodeIventaris = KodeInventaris::find($sarana->kode_inventaris_id);
+                // $kodeIventaris->delete();
             }
         }
 

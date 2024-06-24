@@ -204,11 +204,16 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($sarpras as $item)
-                                            @include('page.pendataan-sarpras.popup.edit-' . $menu)
+                                            @if (!in_array('PJS', $roleUser))
+                                                @include('page.pendataan-sarpras.popup.edit-' . $menu)
+                                            @endif
                                             <tr>
                                                 @if (!in_array('PJS', $roleUser))
                                                     <th scope="row">
-                                                        {{ $item->kode_inventaris ?? $item->prasarana($item->sarpras_id)->kode_inventaris }}
+                                                        {{-- {{ $item->kodeInventaris-> ?? $item->prasarana($item->sarpras_id)->kode_inventaris }} --}}
+                                                        <div class="text-nowrap">
+                                                            {{ $item->kodeInventaris->gol ?? $item->prasarana($item->sarpras_id)->kodeInventaris->gol }}.{{ $item->kodeInventaris->bid ?? $item->prasarana($item->sarpras_id)->kodeInventaris->bid }}.{{ $item->kodeInventaris->kel ?? $item->prasarana($item->sarpras_id)->kodeInventaris->kel }}.{{ $item->kodeInventaris->sub_kel ?? $item->prasarana($item->sarpras_id)->kodeInventaris->sub_kel }}.{{ $item->kodeInventaris->sub_sub ?? $item->prasarana($item->sarpras_id)->kodeInventaris->sub_sub }}.{{ $item->kodeInventaris->no_urut ?? $item->prasarana($item->sarpras_id)->kodeInventaris->no_urut }}
+                                                        </div>
                                                     </th>
                                                 @endif
                                                 <td>{{ $item->nama_prasarana ?? $item->prasarana($item->sarpras_id)->nama_prasarana }}

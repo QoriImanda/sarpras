@@ -18,10 +18,40 @@
                       <div class="row g-2">
                           <div class="col-md mr-2">
 
-                              <div class="form-floating">
-                                  <input type="text" class="form-control" name="kode_inventaris"
-                                      id="floatingInputGrid" placeholder="xxxxxxxxx" value="" required>
-                                  <label for="floatingInputGrid">Kode Inventaris</label>
+                              <div class="row g-3 mb-2">
+                                  <div class="col-md-2">
+                                      <label for="inputGol" class="form-label">Gol</label>
+                                      <input type="number" class="form-control" name="gol" value=""
+                                          id="inputGol" required>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <label for="inputBid" class="form-label">Bid</label>
+                                      <input type="number" class="form-control" name="bid" value=""
+                                          id="inputBid" required>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <label for="inputKel" class="form-label">Kel</label>
+                                      <input type="number" class="form-control" name="kel" value=""
+                                          id="inputKel" required>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <label for="inputSubKel" class="form-label">Sub
+                                          Kel</label>
+                                      <input type="number" class="form-control" name="sub_kel" value=""
+                                          id="inputSubKel" required>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <label for="inputSubSub" class="form-label">Sub
+                                          Sub</label>
+                                      <input type="number" class="form-control" name="sub_sub" value=""
+                                          id="inputSubSub" required>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <label for="inputNoUrut" class="form-label">No.
+                                          Urut</label>
+                                      <input type="number" class="form-control" name="no_urut" value=""
+                                          id="inputNoUrut" required>
+                                  </div>
                               </div>
 
                               <div class="form-floating mt-2">
@@ -49,22 +79,22 @@
                           </div>
                           <div class="col-md mr-2">
 
-                              {{-- <div class="form-floating">
+                              <div class="form-floating">
                                   <input type="number" class="form-control" name="tahun_pengadaan"
                                       id="floatingInputGrid" placeholder="xxxxxxxxx" value="" required>
                                   <label for="floatingInputGrid">Tahun Pengadaan</label>
-                              </div> --}}
+                              </div>
 
-                              {{-- <div class="form-floating mt-2">
-                              <input type="text" class="form-control" name="lokasi_prasarana" id="floatingInputGrid"
-                                  placeholder="xxxxxxxxx" value="" required>
-                              <label for="floatingInputGrid">Lokasi</label>
-                                </div> --}}
+                              <div class="form-floating mt-2">
+                                  <input type="text" class="form-control" name="harga" id="floatingInputGrid"
+                                      placeholder="xxxxxxxxx" value="" required>
+                                  <label for="floatingInputGrid">Harga</label>
+                              </div>
 
-                              {{-- <div class="form-floating mt-2">
+                              <div class="form-floating mt-2">
                                   <textarea class="form-control" name="lokasi_prasarana" placeholder="" id="floatingTextarea"></textarea>
                                   <label for="floatingTextarea">Lokasi</label>
-                              </div> --}}
+                              </div>
 
                           </div>
                       </div>

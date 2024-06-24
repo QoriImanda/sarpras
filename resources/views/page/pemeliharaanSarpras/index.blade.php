@@ -165,7 +165,7 @@
                                                         @include('page.pemeliharaanSarpras.popup.form-input-pemeliharaan-sarpras-Ganjil')
                                                         <tr>
                                                             <th scope="row">
-                                                                {{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->kode_inventaris ?? '' }}
+                                                                {{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->kodeInventaris->gol ?? '' }}.{{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->kodeInventaris->bid ?? '' }}{{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->kodeInventaris->kel ?? '' }}.{{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->kodeInventaris->sub_kel ?? '' }}.{{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->kodeInventaris->sub_sub ?? '' }}.{{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->kodeInventaris->no_urut ?? '' }}
                                                             </th>
                                                             <td>{{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->nama_prasarana ??
                                                                 ($item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->nama_sarana ?? '') }}
@@ -198,7 +198,9 @@
                                                         @endphp
                                                         @include('page.pemeliharaanSarpras.popup.form-input-pemeliharaan-sarpras-Ganjil')
                                                         <tr>
-                                                            <th scope="row">{{ $item->kode_inventaris }}</th>
+                                                            <th scope="row">
+                                                                {{ $item->kodeInventaris->gol }}.{{ $item->kodeInventaris->bid }}.{{ $item->kodeInventaris->kel }}.{{ $item->kodeInventaris->sub_kel }}.{{ $item->kodeInventaris->sub_sub }}.{{ $item->kodeInventaris->no_urut }}
+                                                            </th>
                                                             <td>{{ $item->nama_sarana }}
                                                             </td>
                                                             <td>{{ $sarpras }}</td>
@@ -253,7 +255,7 @@
                                                         @include('page.pemeliharaanSarpras.popup.form-input-pemeliharaan-sarpras-Genap')
                                                         <tr>
                                                             <th scope="row">
-                                                                {{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->kode_inventaris ?? '' }}
+                                                                {{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->kodeInventaris->gol ?? '' }}.{{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->kodeInventaris->bid ?? '' }}{{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->kodeInventaris->kel ?? '' }}.{{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->kodeInventaris->sub_kel ?? '' }}.{{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->kodeInventaris->sub_sub ?? '' }}.{{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->kodeInventaris->no_urut ?? '' }}
                                                             </th>
                                                             <td>{{ $item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->nama_prasarana ??
                                                                 ($item->sarpras($item->sarpras_id, $item->sarana_or_prasarana)->nama_sarana ?? '') }}
@@ -286,7 +288,9 @@
                                                         @endphp
                                                         @include('page.pemeliharaanSarpras.popup.form-input-pemeliharaan-sarpras-Genap')
                                                         <tr>
-                                                            <th scope="row">{{ $item->kode_inventaris }}</th>
+                                                            <th scope="row">
+                                                                {{ $item->kodeInventaris->gol }}.{{ $item->kodeInventaris->bid }}.{{ $item->kodeInventaris->kel }}.{{ $item->kodeInventaris->sub_kel }}.{{ $item->kodeInventaris->sub_sub }}.{{ $item->kodeInventaris->no_urut }}
+                                                            </th>
                                                             <td>{{ $item->nama_sarana }}
                                                             </td>
                                                             <td>{{ $sarpras }}</td>
@@ -342,7 +346,7 @@
                                                         @endphp
                                                         @include('page.pemeliharaanSarpras.popup.form-input-pemeliharaan-sarpras-Ganjil')
                                                         <tr>
-                                                            <th scope="row">{{ $item->kode_inventaris }}</th>
+                                                            <th scope="row">{{ $item->kodeInventaris->gol }}.{{ $item->kodeInventaris->bid }}.{{ $item->kodeInventaris->kel }}.{{ $item->kodeInventaris->sub_kel }}.{{ $item->kodeInventaris->sub_sub }}.{{ $item->kodeInventaris->no_urut }}</th>
                                                             <td>{{ $item->nama_prasarana }}
                                                                 @if ($item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? '')
                                                                     ({{ $item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? '' }})
@@ -372,7 +376,7 @@
                                                         @endphp
                                                         @include('page.pemeliharaanSarpras.popup.form-input-pemeliharaan-sarpras-Ganjil')
                                                         <tr>
-                                                            <th scope="row">{{ $item->kode_inventaris }}</th>
+                                                            <th scope="row">{{ $item->kodeInventaris->gol }}.{{ $item->kodeInventaris->bid }}.{{ $item->kodeInventaris->kel }}.{{ $item->kodeInventaris->sub_kel }}.{{ $item->kodeInventaris->sub_sub }}.{{ $item->kodeInventaris->no_urut }}</th>
                                                             <td>{{ $item->nama_sarana }}
                                                                 @if ($item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? ($item->pjSarana($item->id)->nama_lengkap ?? ''))
                                                                     ({{ $item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? $item->pjSarana($item->id)->nama_lengkap }})
@@ -429,7 +433,7 @@
                                                         @endphp
                                                         @include('page.pemeliharaanSarpras.popup.form-input-pemeliharaan-sarpras-Genap')
                                                         <tr>
-                                                            <th scope="row">{{ $item->kode_inventaris }}</th>
+                                                            <th scope="row">{{ $item->kodeInventaris->gol }}.{{ $item->kodeInventaris->bid }}.{{ $item->kodeInventaris->kel }}.{{ $item->kodeInventaris->sub_kel }}.{{ $item->kodeInventaris->sub_sub }}.{{ $item->kodeInventaris->no_urut }}</th>
                                                             <td>{{ $item->nama_prasarana }}
                                                                 @if ($item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? '')
                                                                     ({{ $item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? '' }})
@@ -459,7 +463,7 @@
                                                         @endphp
                                                         @include('page.pemeliharaanSarpras.popup.form-input-pemeliharaan-sarpras-Genap')
                                                         <tr>
-                                                            <th scope="row">{{ $item->kode_inventaris }}</th>
+                                                            <th scope="row">{{ $item->kodeInventaris->gol }}.{{ $item->kodeInventaris->bid }}.{{ $item->kodeInventaris->kel }}.{{ $item->kodeInventaris->sub_kel }}.{{ $item->kodeInventaris->sub_sub }}.{{ $item->kodeInventaris->no_urut }}</th>
                                                             <td>{{ $item->nama_sarana }}
                                                                 @if ($item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? '')
                                                                     ({{ $item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? '' }})
@@ -492,8 +496,6 @@
                                     </div>
                                 </div><!-- End Default Tabs -->
                             @endif
-
-
                         </div>
                     </div>
 

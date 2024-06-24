@@ -27,7 +27,7 @@ class PemeliharaanSarprasController extends Controller
             ->join('user_details', 'penanggung_jawab_sarpras.user_id', '=', 'user_details.user_id')
             ->where('penanggung_jawab_sarpras.user_id', auth()->user()->id)->select(
                 'saranas.id',
-                'saranas.kode_inventaris',
+                'saranas.kode_inventaris_id',
                 'saranas.nama_sarana',
                 'saranas.desc',
                 'saranas.jenis_sarana',
