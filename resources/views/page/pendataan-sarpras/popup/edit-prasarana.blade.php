@@ -23,35 +23,35 @@
                                   <div class="col-md-2">
                                       <label for="inputGol" class="form-label">Gol</label>
                                       <input type="number" class="form-control" name="gol"
-                                          value="{{ $item->kodeInventaris->gol }}" id="inputGol" required>
+                                          value="{{ $item->kodeInventaris->gol ?? '' }}" id="inputGol" required>
                                   </div>
                                   <div class="col-md-2">
                                       <label for="inputBid" class="form-label">Bid</label>
                                       <input type="number" class="form-control" name="bid"
-                                          value="{{ $item->kodeInventaris->bid }}" id="inputBid" required>
+                                          value="{{ $item->kodeInventaris->bid ?? '' }}" id="inputBid" required>
                                   </div>
                                   <div class="col-md-2">
                                       <label for="inputKel" class="form-label">Kel</label>
                                       <input type="number" class="form-control" name="kel"
-                                          value="{{ $item->kodeInventaris->kel }}" id="inputKel" required>
+                                          value="{{ $item->kodeInventaris->kel ?? '' }}" id="inputKel" required>
                                   </div>
                                   <div class="col-md-2">
                                       <label for="inputSubKel" class="form-label">Sub
                                           Kel</label>
                                       <input type="number" class="form-control" name="sub_kel"
-                                          value="{{ $item->kodeInventaris->sub_kel }}" id="inputSubKel" required>
+                                          value="{{ $item->kodeInventaris->sub_kel ?? '' }}" id="inputSubKel" required>
                                   </div>
                                   <div class="col-md-2">
                                       <label for="inputSubSub" class="form-label">Sub
                                           Sub</label>
                                       <input type="number" class="form-control" name="sub_sub"
-                                          value="{{ $item->kodeInventaris->sub_sub }}" id="inputSubSub" required>
+                                          value="{{ $item->kodeInventaris->sub_sub ?? '' }}" id="inputSubSub" required>
                                   </div>
                                   <div class="col-md-2">
                                       <label for="inputNoUrut" class="form-label">No.
                                           Urut</label>
                                       <input type="number" class="form-control" name="no_urut"
-                                          value="{{ $item->kodeInventaris->no_urut }}" id="inputNoUrut" required>
+                                          value="{{ $item->kodeInventaris->no_urut ?? '' }}" id="inputNoUrut" required>
                                   </div>
                               </div>
 
@@ -70,7 +70,8 @@
                               <div class="form-floating mt-2">
                                   <select class="form-select" id="floatingSelect" name="kategori_id" required
                                       aria-label="Floating label select example">
-                                      <option value="{{ $item->kategori_id }}">{{ $item->kategori->kategori }}</option>
+                                      <option value="{{ $item->kategori_id }}">{{ $item->kategori->kategori }}
+                                      </option>
                                       @foreach ($kategoris as $kategori)
                                           <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
                                       @endforeach
@@ -83,7 +84,8 @@
 
                               <div class="form-floating">
                                   <input type="number" class="form-control" name="tahun_pengadaan"
-                                      id="floatingInputGrid" placeholder="xxxxxxxxx" value="{{ $item->tahun_pengadaan }}" required>
+                                      id="floatingInputGrid" placeholder="xxxxxxxxx"
+                                      value="{{ $item->tahun_pengadaan }}" required>
                                   <label for="floatingInputGrid">Tahun Pengadaan</label>
                               </div>
 

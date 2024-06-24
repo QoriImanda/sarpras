@@ -23,35 +23,35 @@
                                   <div class="col-md-2">
                                       <label for="inputGol" class="form-label">Gol</label>
                                       <input type="number" class="form-control" name="gol"
-                                          value="{{ $item->kodeInventaris->gol }}" id="inputGol" required>
+                                          value="{{ $item->kodeInventaris->gol ?? '' }}" id="inputGol" required>
                                   </div>
                                   <div class="col-md-2">
                                       <label for="inputBid" class="form-label">Bid</label>
                                       <input type="number" class="form-control" name="bid"
-                                          value="{{ $item->kodeInventaris->bid }}" id="inputBid" required>
+                                          value="{{ $item->kodeInventaris->bid ?? '' }}" id="inputBid" required>
                                   </div>
                                   <div class="col-md-2">
                                       <label for="inputKel" class="form-label">Kel</label>
                                       <input type="number" class="form-control" name="kel"
-                                          value="{{ $item->kodeInventaris->kel }}" id="inputKel" required>
+                                          value="{{ $item->kodeInventaris->kel ?? '' }}" id="inputKel" required>
                                   </div>
                                   <div class="col-md-2">
                                       <label for="inputSubKel" class="form-label">Sub
                                           Kel</label>
                                       <input type="number" class="form-control" name="sub_kel"
-                                          value="{{ $item->kodeInventaris->sub_kel }}" id="inputSubKel" required>
+                                          value="{{ $item->kodeInventaris->sub_kel ?? '' }}" id="inputSubKel" required>
                                   </div>
                                   <div class="col-md-2">
                                       <label for="inputSubSub" class="form-label">Sub
                                           Sub</label>
                                       <input type="number" class="form-control" name="sub_sub"
-                                          value="{{ $item->kodeInventaris->sub_sub }}" id="inputSubSub" required>
+                                          value="{{ $item->kodeInventaris->sub_sub ?? '' }}" id="inputSubSub" required>
                                   </div>
                                   <div class="col-md-2">
                                       <label for="inputNoUrut" class="form-label">No.
                                           Urut</label>
                                       <input type="number" class="form-control" name="no_urut"
-                                          value="{{ $item->kodeInventaris->no_urut }}" id="inputNoUrut" required>
+                                          value="{{ $item->kodeInventaris->no_urut ?? '' }}" id="inputNoUrut" required>
                                   </div>
                               </div>
 
@@ -112,7 +112,8 @@
 
                               <div class="form-floating mt-2">
                                   <input type="text" class="form-control" name="lokasi_sarana"
-                                      id="floatingInputGrid" placeholder="xxxxxxxxx" value="{{ $item->lokasi_sarana }}" required>
+                                      id="floatingInputGrid" placeholder="xxxxxxxxx"
+                                      value="{{ $item->lokasi_sarana }}" required>
                                   <label for="floatingInputGrid">Lokasi</label>
                               </div>
 
