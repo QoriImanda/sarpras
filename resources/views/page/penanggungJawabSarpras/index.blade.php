@@ -114,7 +114,7 @@
                                         @endphp
                                         @include('page.penanggungJawabSarpras.popup.pj-sarpras')
                                         <tr>
-                                            <th scope="row">{{ $item->kodeInventaris->gol }}.{{ $item->kodeInventaris->bid }}.{{ $item->kodeInventaris->kel }}.{{ $item->kodeInventaris->sub_kel }}.{{ $item->kodeInventaris->sub_sub }}.{{ $item->kodeInventaris->no_urut }}</th>
+                                            <th scope="row">{{ $item->kodeInventaris->gol ?? '' }}.{{ $item->kodeInventaris->bid ?? '' }}.{{ $item->kodeInventaris->kel ?? '' }}.{{ $item->kodeInventaris->sub_kel ?? '' }}.{{ $item->kodeInventaris->sub_sub ?? '' }}.{{ $item->kodeInventaris->no_urut ?? '' }}</th>
                                             <td>{{ $item->nama_prasarana }}</td>
                                             <td>Prasarana</td>
                                             <td>{{ $item->kategori->kategori }}</td>
@@ -134,7 +134,7 @@
                                         @endphp
                                         @include('page.penanggungJawabSarpras.popup.pj-sarpras')
                                         <tr>
-                                            <th scope="row">{{ $item->kodeInventaris->gol }}.{{ $item->kodeInventaris->bid }}.{{ $item->kodeInventaris->kel }}.{{ $item->kodeInventaris->sub_kel }}.{{ $item->kodeInventaris->sub_sub }}.{{ $item->kodeInventaris->no_urut }}</th>
+                                            <th scope="row">{{ $item->kodeInventaris->gol ?? '' }}.{{ $item->kodeInventaris->bid ?? '' }}.{{ $item->kodeInventaris->kel ?? '' }}.{{ $item->kodeInventaris->sub_kel ?? '' }}.{{ $item->kodeInventaris->sub_sub ?? '' }}.{{ $item->kodeInventaris->no_urut ?? '' }}</th>
                                             <td>{{ $item->nama_sarana }}</td>
                                             <td>Sarana</td>
                                             <td>{{ $item->kategori->kategori }}</td>

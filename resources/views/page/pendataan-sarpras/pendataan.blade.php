@@ -138,7 +138,7 @@
                                             <tr>
                                                 <th scope="row">
                                                     <div class="text-nowrap">
-                                                        {{ $item->kodeInventaris->gol }}.{{ $item->kodeInventaris->bid }}.{{ $item->kodeInventaris->kel }}.{{ $item->kodeInventaris->sub_kel }}.{{ $item->kodeInventaris->sub_sub }}.{{ $item->kodeInventaris->no_urut }}
+                                                        {{ $item->kodeInventaris->gol ?? '' }}.{{ $item->kodeInventaris->bid ?? '' }}.{{ $item->kodeInventaris->kel ?? '' }}.{{ $item->kodeInventaris->sub_kel ?? '' }}.{{ $item->kodeInventaris->sub_sub ?? '' }}.{{ $item->kodeInventaris->no_urut ?? '' }}
                                                     </div>
                                                 </th>
                                                 <td>{{ $item->nama_sarana }}</td>
@@ -212,7 +212,7 @@
                                                     <th scope="row">
                                                         {{-- {{ $item->kodeInventaris-> ?? $item->prasarana($item->sarpras_id)->kode_inventaris }} --}}
                                                         <div class="text-nowrap">
-                                                            {{ $item->kodeInventaris->gol ?? $item->prasarana($item->sarpras_id)->kodeInventaris->gol }}.{{ $item->kodeInventaris->bid ?? $item->prasarana($item->sarpras_id)->kodeInventaris->bid }}.{{ $item->kodeInventaris->kel ?? $item->prasarana($item->sarpras_id)->kodeInventaris->kel }}.{{ $item->kodeInventaris->sub_kel ?? $item->prasarana($item->sarpras_id)->kodeInventaris->sub_kel }}.{{ $item->kodeInventaris->sub_sub ?? $item->prasarana($item->sarpras_id)->kodeInventaris->sub_sub }}.{{ $item->kodeInventaris->no_urut ?? $item->prasarana($item->sarpras_id)->kodeInventaris->no_urut }}
+                                                            {{ $item->kodeInventaris->gol ?? $item->prasarana($item->sarpras_id)->kodeInventaris->gol ?? '' }}.{{ $item->kodeInventaris->bid ?? $item->prasarana($item->sarpras_id)->kodeInventaris->bid ?? '' }}.{{ $item->kodeInventaris->kel ?? $item->prasarana($item->sarpras_id)->kodeInventaris->kel ?? '' }}.{{ $item->kodeInventaris->sub_kel ?? $item->prasarana($item->sarpras_id)->kodeInventaris->sub_kel ?? '' }}.{{ $item->kodeInventaris->sub_sub ?? $item->prasarana($item->sarpras_id)->kodeInventaris->sub_sub ?? '' }}.{{ $item->kodeInventaris->no_urut ?? $item->prasarana($item->sarpras_id)->kodeInventaris->no_urut ?? '' }}
                                                         </div>
                                                     </th>
                                                 @endif
