@@ -157,7 +157,9 @@
                                                     @endphp
                                                     {{-- @include('page.pemeliharaanSarpras.popup.form-input-pemeliharaan-sarpras-Ganjil') --}}
                                                     <tr>
-                                                        <th scope="row">{{ $item->kode_inventaris }}</th>
+                                                        <th scope="row">
+                                                            {{ $item->kodeInventaris->gol ?? '' }}.{{ $item->kodeInventaris->bid ?? '' }}{{ $item->kodeInventaris->kel ?? '' }}.{{ $item->kodeInventaris->sub_kel ?? '' }}.{{ $item->kodeInventaris->sub_sub ?? '' }}.{{ $item->kodeInventaris->no_urut ?? '' }}
+                                                        </th>
                                                         <td>{{ $item->nama_prasarana }}
                                                             @if ($item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? '')
                                                                 ({{ $item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? '' }})
@@ -187,7 +189,9 @@
                                                     @endphp
                                                     {{-- @include('page.pemeliharaanSarpras.popup.form-input-pemeliharaan-sarpras-Ganjil') --}}
                                                     <tr>
-                                                        <th scope="row">{{ $item->kode_inventaris }}</th>
+                                                        <th scope="row">
+                                                            {{ $item->kodeInventaris->gol ?? '' }}.{{ $item->kodeInventaris->bid ?? '' }}{{ $item->kodeInventaris->kel ?? '' }}.{{ $item->kodeInventaris->sub_kel ?? '' }}.{{ $item->kodeInventaris->sub_sub ?? '' }}.{{ $item->kodeInventaris->no_urut ?? '' }}
+                                                        </th>
                                                         <td>{{ $item->nama_sarana }}
                                                             @if ($item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? ($item->pjSarana($item->id)->nama_lengkap ?? ''))
                                                                 ({{ $item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? $item->pjSarana($item->id)->nama_lengkap }})
@@ -253,7 +257,9 @@
                                                         $sarpras = 'Prasarana';
                                                     @endphp
                                                     <tr>
-                                                        <th scope="row">{{ $item->kode_inventaris }}</th>
+                                                        <th scope="row">
+                                                            {{ $item->kodeInventaris->gol ?? '' }}.{{ $item->kodeInventaris->bid ?? '' }}{{ $item->kodeInventaris->kel ?? '' }}.{{ $item->kodeInventaris->sub_kel ?? '' }}.{{ $item->kodeInventaris->sub_sub ?? '' }}.{{ $item->kodeInventaris->no_urut ?? '' }}
+                                                        </th>
                                                         <td>{{ $item->nama_prasarana }}
                                                             @if ($item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? '')
                                                                 ({{ $item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? '' }})
@@ -276,7 +282,9 @@
                                                         $sarpras = 'Sarana';
                                                     @endphp
                                                     <tr>
-                                                        <th scope="row">{{ $item->kode_inventaris }}</th>
+                                                        <th scope="row">
+                                                            {{ $item->kodeInventaris->gol ?? '' }}.{{ $item->kodeInventaris->bid ?? '' }}{{ $item->kodeInventaris->kel ?? '' }}.{{ $item->kodeInventaris->sub_kel ?? '' }}.{{ $item->kodeInventaris->sub_sub ?? '' }}.{{ $item->kodeInventaris->no_urut ?? '' }}
+                                                        </th>
                                                         <td>{{ $item->nama_sarana }}
                                                             @if ($item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? '')
                                                                 ({{ $item->pjSarpras($item->id)->user->userDetail->nama_lengkap ?? '' }})
